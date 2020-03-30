@@ -1,24 +1,3 @@
-# T-Mobile Coding Challenge
-
-### Important! Read this First !
-
-Do **not** submit a pull request to this repository.  You PR wil be rejected and your submission ignored.
-To be safe **do not Fork** this repository, if you do you will be tempted to create a PR.
-
-To _properly_ submit a coding challenge you must:
-
-1. Create a blank (empty) repo in the public git service of your choice ( github, gitlab, bitbucket )
-2. Clone this repo to your local workstation
-3. Reset the remote origin to point to your newly created empty repo
-4. Push the master branch up to your repo
-
-5. make necessary changes
-6. push changes to your origin
-7. send address of your copy to t-mobile.
-
-We will review your copy online before and during your interview.
-
-
 # Stocks coding challenge
 
 ## How to run the application
@@ -40,55 +19,37 @@ A proxy has been set up in `stocks` to proxy calls to `locahost:3333` which is t
 
 ### Task 1
 
-Please provide a short code review of the base `master` branch:
+Code review comments of the base `master` branch:
 
 #### Task 1-A
 1. What is done well?
+    - Used ngrx feature for state management, it improve the application performance
+    - For the form validation purpose used FormBuilder, FormGroup, Validators stocks component. Using this in-built/predefined features easily we can addressed the applicatoin form validation part.
+    - In order to save developers efforts we can use predefined angular features like angular material, google chart, It should be injected wherever it required in order to use it.
+
 2. What would you change?
+    - Need to use access specifiers wherever needed
+    - Validation is required while form submission, all input should be validated before submitting the form accordingly if any input field doesn't get validate we can show the error message. So user will get know what input need to pass.
+    - All hard-coded values needs to be in separate constant file. We can have one application level constant file if application is not big. If application is big then there would be separate constant file per feature/module. In this application I have added separate constant files for stock, chart and also added app level constant file.
+    - In order to well structed application we can have interfaces, enums, models clasees wherever necessary. And it should reusable.
+    - As per current implementation graph wouldn't shown on UI as data is missing in chart component file. Need to pass data from stock to chart using async.
+    - In order to run application smoothly, writting test cases required. Test cases needs to addedd and it should covered all logical aspects of application. I have added test cases almost for all changes.
+    - Needs to cover accessibility - changes added.
+    - async pipe of ngrx can be use to pass observable data.
+    - Code indentation is required.
+
 3. Are there any code smells or problematic implementations?
+    - Form Validation is not handled, it should be handled before making call to API. And also accordingly error messages should be displayed if input is not valid.
+    - Grapgh wouldn't be shown on UI as data is empty in chart component so we can use async pipe to pass data from stock component to chart componet.
+
 
 > Make a PR to fix at least one of the issues that you identify
+    - Changes added to run the application.
+    All review commentes are addressed in other task code changes.
 
 #### Task 1-B
 
 [Accessability](https://www.w3.org/WAI/GL/WCAG20/) is an important feature of all public facing websites.  
 
 > Make a PR to add accessability features to the web application
-
-
-### Task 2
-
-```
-Business requirement: As a user I should be able to type into
-the symbol field and make a valid time-frame selection so that
-the graph is refreshed automatically without needing to click a button.
-```
-
-_**Make a PR from the branch `feat_stock_typeahead` to `master` and provide a code review on this PR**_
-
-> Add comments to the PR. Focus on all items that you can see - this is a hypothetical example but let's treat it as a critical application. Then present these changes as another commit on the PR.
-
-### Task 3
-
-```
-Business requirement: As a user I want to choose custom dates
-so that I can view the trends within a specific period of time.
-```
-
-_**Implement this feature and make a PR from the branch `feat_custom_dates` to `master`.**_
-
-> Use the material date-picker component
-
-> We need two date-pickers: "from" and "to". The date-pickers should not allow selection of dates after the current day. "to" cannot be before "from" (selecting an invalid range should make both dates the same value)
-
-### Task 4
-
-```
-Technical requirement: the server `stocks-api` should be used as a proxy
-to make calls. Calls should be cached in memory to avoid querying for the
-same data. If a query is not in cache we should call-through to the API.
-```
-
-_**Implement the solution and make a PR from the branch `feat_proxy_server` to `master`**_
-
-> It is important to get the implementation working before trying to organize and clean it up.
+    - Accessability changes added

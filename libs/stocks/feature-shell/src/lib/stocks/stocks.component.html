@@ -1,35 +1,38 @@
 <form [formGroup]="stockPickerForm">
   <mat-form-field>
     <input
+      id="stocks-symbol"
+      name="symbol"
+      type="text"
+      title="{{stockLabels?.SYMBOL_FIELD_TITLE}}"
+      aria-label="Symbol"
       matInput
-      placeholder="Symbol e.g AAPL"
+      placeholder="{{stockLabels?.SYMBOL_REQUIRED_MESSAGE}}"
       formControlName="symbol"
-      value=""
-    />
-    <mat-error
-      ><span
-        *ngIf="
-          !stockPickerForm.get('symbol').valid &&
-          stockPickerForm.get('symbol').touched
-        "
-        >Please enter a symbol</span
-      >
+      value=""/>
+    <mat-error>
+      <span *ngIf="!stockPickerForm.get('symbol').valid &&
+          stockPickerForm.get('symbol').touched">
+          {{stockLabels?.SYMBOL_REQUIRED_MESSAGE}}
+      </span>
     </mat-error>
   </mat-form-field>
 
   <mat-form-field>
-    <mat-label>Favorite time period</mat-label>
-    <mat-select formControlName="period">
-      <mat-option
+    <mat-label>{{stockLabels?.TIME_PERIOD_LABEL}}</mat-label>
+    <mat-select id="stock-period" aria-label="{{stockLabels?.STOCK_PERIOD_ARIA_LABEL}}" 
+      name="stock-period" role="listbox" formControlName="period">
+      <mat-option role="option" aria-owns="select-period"
         *ngFor="let timePeriod of timePeriods"
-        [value]="timePeriod.value"
-      >
+        [value]="timePeriod.value">
         {{ timePeriod.viewValue }}
       </mat-option>
     </mat-select>
   </mat-form-field>
 
-  <button (click)="fetchQuote()" mat-raised-button>Go</button>
+  <button tabindex="0" id="fetch-stocks-btn" aria-label="Submit" 
+    title="{{stockLabels?.GO_BUTTON_TEXT}} button" (click)="fetchQuote()" mat-raised-button>
+    {{stockLabels?.GO_BUTTON_TEXT}}</button>
 </form>
 
-<coding-challenge-chart [data$]="quotes$"></coding-challenge-chart>
+<coding-challenge-chart [data$]="quotes$ | async"></coding-challenge-chart>

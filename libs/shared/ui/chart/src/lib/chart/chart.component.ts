@@ -5,7 +5,10 @@ import {
   Input,
   OnInit
 } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { takeWhile } from 'rxjs/operators';
+import { IChart } from '../interfaces/chart.interface';
+import { CHART_DATA_MOCK } from '../mock/chart-data';
 
 @Component({
   selector: 'coding-challenge-chart',
@@ -13,27 +16,14 @@ import { Observable } from 'rxjs';
   styleUrls: ['./chart.component.css']
 })
 export class ChartComponent implements OnInit {
-  @Input() data$: Observable<any>;
+  @Input() data$: Observable<(string | number)[][]>;
   chartData: any;
-
-  chart: {
-    title: string;
-    type: string;
-    data: any;
-    columnNames: string[];
-    options: any;
-  };
+  public subscription : Subscription;
+  public chart: IChart;
+  
   constructor(private cd: ChangeDetectorRef) {}
 
   ngOnInit() {
-    this.chart = {
-      title: '',
-      type: 'LineChart',
-      data: [],
-      columnNames: ['period', 'close'],
-      options: { title: `Stock price`, width: '600', height: '400' }
-    };
-
-    this.data$.subscribe(newData => (this.chartData = newData));
+    this.chart = CHART_DATA_MOCK;
   }
 }
