@@ -1,31 +1,40 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { CommonModule } from '@angular/common';
+import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { APP_CONSTANT } from './constant/app.constant';
 
 describe('AppComponent', () => {
+  let app: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ CommonModule, RouterTestingModule],
       declarations: [AppComponent]
     }).compileComponents();
   }));
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    app = fixture.debugElement.componentInstance;
   });
 
-  it(`should have as title 'stocks'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('stocks');
-  });
+  describe('AppComponent', () => {
+    it('should create the app', () => {
+      expect(app).toBeTruthy();
+    });
 
-  it('should render title in a h1 tag', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain(
-      'Welcome to stocks!'
-    );
+    it(`should have as title 'stocks'`, () => {
+      expect(app.title).toEqual(APP_CONSTANT.TITLE);
+    });
+
+    it('should render title in a h1 tag', () => {
+      fixture.detectChanges();
+      const compiled = fixture.debugElement.nativeElement;
+      expect(compiled.querySelector('h1').textContent).toContain(
+        APP_CONSTANT.TITLE
+      );
+    });
   });
 });
