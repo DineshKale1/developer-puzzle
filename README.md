@@ -44,7 +44,8 @@ Code review comments of the base `master` branch:
 
 
 > Make a PR to fix at least one of the issues that you identify
-    - PR Raised
+    - Changes added to run the application.
+    All review commentes are addressed in other task code changes.
 
 #### Task 1-B
 
