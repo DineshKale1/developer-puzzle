@@ -51,4 +51,4 @@ Code review comments of the base `master` branch:
 [Accessability](https://www.w3.org/WAI/GL/WCAG20/) is an important feature of all public facing websites.  
 
 > Make a PR to add accessability features to the web application
-
+    - Accessability changes added
